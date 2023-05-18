@@ -110,5 +110,35 @@ public class EmployeeForm {
                 }
             }
         });
+        searchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                try{
+                    String id = empid.getText();
+                    pst = con.prepareStatement("select empname,salary,mobile from company where id=?");
+                    pst.setString(1,id);
+                    ResultSet rs = pst.executeQuery();
+
+                    if (rs.next()==true){
+                        String empname = rs.getString(1);
+                        String salary = rs.getString(2);
+                        String mobile = rs.getString(3);
+
+                        txtname.setText(empname);
+                        txtsalary.setText(salary);
+                        txtmobile.setText(mobile);
+                    }else{
+                        txtname.setText("");
+                        txtsalary.setText("");
+                        txtmobile.setText("");
+                        JOptionPane.showMessageDialog(null, "Invalid employee number");
+
+                    }
+                }catch (SQLException ex){
+                    ex.printStackTrace();
+                }
+            }
+        });
     }
 }
