@@ -140,5 +140,27 @@ public class EmployeeForm {
                 }
             }
         });
+        deleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String id;
+                id = empid.getText();
+
+                try{
+                    pst = con.prepareStatement("delete from company where id=?");
+                    pst.setString(1,id);
+                    pst.executeUpdate();
+                    JOptionPane.showMessageDialog(null,"Deleted..");
+                    table_load();
+
+                    txtname.setText("");
+                    txtsalary.setText("");
+                    txtmobile.setText("");
+                    txtname.requestFocus();
+                }catch (SQLException ex){
+                    ex.printStackTrace();
+                }
+            }
+        });
     }
 }
