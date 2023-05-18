@@ -53,6 +53,7 @@ public class EmployeeForm {
 
     public EmployeeForm() {
         connect();
+        table_load();
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -94,7 +95,16 @@ public class EmployeeForm {
                     pst.setString(1,empname);
                     pst.setString(2,salary);
                     pst.setString(3,mobile);
-                    pst.set
+                    pst.setString(4,id);
+                    pst.executeUpdate();
+                    JOptionPane.showMessageDialog(null,"Updated..");
+                    table_load();
+                    txtname.setText("");
+                    txtsalary.setText("");
+                    txtmobile.setText("");
+                    txtname.requestFocus();
+
+
                 }catch (SQLException ex){
                     ex.printStackTrace();
                 }
