@@ -94,7 +94,7 @@ public class EmployeeForm {
                     pst.setString(1,empname);
                     pst.setString(2,salary);
                     pst.setString(3,mobile);
-                    
+                    pst.set
                 }catch (SQLException ex){
                     ex.printStackTrace();
                 }
