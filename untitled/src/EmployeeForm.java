@@ -15,7 +15,7 @@ public class EmployeeForm {
     private JButton saveButton;
     private JTable table1;
     private JPanel main;
-    private JTextField textField1;
+    private JTextField empid;
     private JScrollPane table_1;
 
 
@@ -74,6 +74,27 @@ public class EmployeeForm {
                     txtsalary.setText("");
                     txtmobile.setText("");
                     txtname.requestFocus();
+                }catch (SQLException ex){
+                    ex.printStackTrace();
+                }
+            }
+        });
+        updateButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String empname,salary,mobile,id;
+
+                empname = txtname.getText();
+                salary = txtsalary.getText();
+                mobile = txtmobile.getText();
+                id = empid.getText();
+
+                try{
+                    pst = con.prepareStatement("update company set empname=?,salary=?,mobile=? where id=?");
+                    pst.setString(1,empname);
+                    pst.setString(2,salary);
+                    pst.setString(3,mobile);
+                    
                 }catch (SQLException ex){
                     ex.printStackTrace();
                 }
